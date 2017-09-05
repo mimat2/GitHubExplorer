@@ -1,5 +1,5 @@
 # GitHubExplorer
-Test project to explorer GitHub users
+Test project to explore GitHub users
 
 
 
