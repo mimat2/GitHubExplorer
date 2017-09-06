@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -19,9 +20,10 @@ namespace GitHubExplorer
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Repository = new MockedRepository();
-            //Repository = new GitHubApi("https://api.github.com/");
+            //Repository = new GitHubApi(gitHubApiAddress);
         }
 
         public static IUsersRepository Repository;
+        private string gitHubApiAddress = WebConfigurationManager.AppSettings["GitHubApiAddress"];
     }
 }
