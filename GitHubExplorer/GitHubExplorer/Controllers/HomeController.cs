@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GitHubExplorer.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,6 +8,7 @@ using System.Web.Mvc;
 namespace GitHubExplorer.Controllers
 {
     [RequireHttps]
+    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -14,18 +16,13 @@ namespace GitHubExplorer.Controllers
             return View();
         }
 
-        [HttpPost]        
-        public JsonResult SearchUsers(string userName)
+        [HttpPost]
+        public JsonResult FindUser(string userName)
         {
             ViewBag.Message = userName;
-            //GitHubExplorer.Repository.GitHubApi gitHubApi = new Repository.GitHubApi("https://api.github.com/");
-            //var users = gitHubApi.GetUsersByLogin(userName);
-            var users = MvcApplication.Repository.GetUsersByLogin(userName);
-
-
-            return Json(users.ToList(), JsonRequestBehavior.AllowGet);
-
-            //return View("Index");
+            var userDto = MvcApplication.Repository.GetUserWithReposByLogin(userName);
+            UserViewModel userViewModel = new UserViewModel(userDto);
+            return Json(userViewModel, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult About()

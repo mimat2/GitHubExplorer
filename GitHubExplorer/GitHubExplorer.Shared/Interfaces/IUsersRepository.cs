@@ -9,7 +9,8 @@ namespace GitHubExplorer.Shared.Interfaces
 {
     public interface IUsersRepository
     {
-        IEnumerable<UserDto> GetUsersByLogin(string userLogin);
-        IEnumerable<RepoDto> GetUserRepos(string userLogin);
+        UserDto GetUserByLogin(string userLogin);
+        UserDto GetUserWithReposByLogin(string userLogin);
+        IEnumerable<UserRepoDto> GetUserRepos(string userLogin, int bestReposCount = 5);
     }
 }

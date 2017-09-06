@@ -10,19 +10,50 @@ namespace GitHubExplorer.Repository
 {
     public class MockedRepository : IUsersRepository
     {
-        public IEnumerable<RepoDto> GetUserRepos(string userLogin)
+        public MockedRepository()
         {
-            throw new NotImplementedException();
-        }
+            mockedUser = new UserDto
+            {
+                Name = "User name",
+                Location = "User Location",
+                AvatarUrl = "https://i.vimeocdn.com/portrait/58832_300x300"
+            };
 
-        public IEnumerable<UserDto> GetUsersByLogin(string userLogin)
-        {
-            List<UserDto> users = new List<UserDto>();
+            mockedUserRepos = new List<UserRepoDto>();
+            Random rand = new Random();
             for (int i = 0; i < 10; i++)
             {
-                users.Add(new UserDto($"login{i}", $"name{i}", $"location{i}", $"avatarUrl{i}", $"reposUrl{i}"));
+                mockedUserRepos.Add(new UserRepoDto
+                {
+                    Description = "Repo description",
+                    Name = "Repo name",
+                    Stargazers_Count = rand.Next(0, 100),
+                    Url = "http://wwww.google.com"
+                });
             }
-            return users;
+        }
+
+        private UserDto mockedUser;
+        private List<UserRepoDto> mockedUserRepos;
+
+        public UserDto GetUserByLogin(string userLogin)
+        {
+            mockedUser.Login = userLogin;
+
+            return mockedUser;
+        }
+
+        public UserDto GetUserWithReposByLogin(string userLogin)
+        {
+            mockedUser.Login = userLogin;
+            mockedUser.UserRepos = GetUserRepos(mockedUser.Login);
+
+            return mockedUser;
+        }
+
+        public IEnumerable<UserRepoDto> GetUserRepos(string userLogin, int bestReposCount = 5)
+        {
+            return mockedUserRepos.OrderByDescending(r => r.Stargazers_Count).Take(bestReposCount);
         }
     }
 }

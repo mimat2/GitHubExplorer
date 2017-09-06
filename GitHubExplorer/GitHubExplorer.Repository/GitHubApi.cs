@@ -22,64 +22,41 @@ namespace GitHubExplorer.Repository
         {
             ApiAddress = apiAddress.TrimEnd('/');
 
-            ValidateAddres();
+            CheckApiAvailability();
         }
 
-        private void ValidateAddres()
+        private void CheckApiAvailability()
         {
             var responseString = WebRequestHelper.CallGetRequest(ApiAddress);
 
             if (responseString == null)
             {
-                throw new InvalidDataException("Invalid API address");
-            }
-
-            if (responseString != null)
-            {
-                JObject deserializedRespone = JObject.Parse(responseString);
-                var userSearchUrl = (string)deserializedRespone["user_search_url"];
-                //jak sprawdzic czy podany adres jest prawidlowy?
+                throw new Exception("Api address response is null");
             }
         }
 
-        public IEnumerable<UserDto> GetUsersByLogin(string userLogin)
+        public UserDto GetUserByLogin(string userLogin)
         {
-            var url = $"{ApiAddress}/search/users?q={userLogin}+type:user+in:login";
-            var responseString = WebRequestHelper.CallGetRequest(url);
-            JObject deserializedRespone = JObject.Parse(responseString);
-
-            List<string> serializedUsers = new List<string>();
-            foreach (object obj in deserializedRespone["items"])
-            {
-                serializedUsers.Add(obj.ToString());
-            }
-
-            IEnumerable<UserDto> users = serializedUsers.Select(u => new UserDto(u));
-
-            
-
-            //more request but more data - could be blocked by limit exceed
-            //List<string> logins = new List<string>();
-
-            //foreach (JObject obj in deserializedRespone["items"])
-            //{
-            //    logins.Add(obj["login"].ToString());
-            //}
-
-            //List<UserDto> users = new List<UserDto>();
-            //foreach (string login in logins)
-            //{
-            //    var userUrl = $"{ApiAddress}/users/{login}";
-            //    var userDataResponseString = WebRequestHelper.CallGetRequest(userUrl);
-            //    users.Add(new UserDto(userDataResponseString));
-            //}
-
-            return users;
+            var userUrl = $"{ApiAddress}/users/{userLogin}";
+            var userResponseString = WebRequestHelper.CallGetRequest(userUrl);
+            var foundUser = JsonConvert.DeserializeObject<UserDto>(userResponseString);
+            return foundUser;            
         }
 
-        public IEnumerable<RepoDto> GetUserRepos(string userLogin)
+        public UserDto GetUserWithReposByLogin(string userLogin)
         {
-            throw new NotImplementedException();
+            var foundUser = GetUserByLogin(userLogin);
+            foundUser.UserRepos = GetUserRepos(foundUser.Login);
+            return foundUser;
+        }
+
+        public IEnumerable<UserRepoDto> GetUserRepos(string userLogin, int bestReposCount = 5)
+        {
+            var userReposUrl = $"{ApiAddress}/users/{userLogin}/repos";
+            var userReposResponseString = WebRequestHelper.CallGetRequest(userReposUrl);
+            var userRepos = JsonConvert.DeserializeObject<List<UserRepoDto>>(userReposResponseString);
+            userRepos.OrderByDescending(r => r.Stargazers_Count).Take(bestReposCount);
+            return userRepos;
         }
     }
 }

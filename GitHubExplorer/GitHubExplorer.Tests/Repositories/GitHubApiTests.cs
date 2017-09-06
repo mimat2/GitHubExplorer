@@ -11,14 +11,6 @@ namespace GitHubExplorer.Tests.Repositories
     [TestClass]
     public class GitHubApiTests
     {
-        IUsersRepository repository;
-
-        [TestInitialize]
-        public void Initialize()
-        {
-            repository = new Repository.GitHubApi("https://api.github.com/");
-        }
-
         [TestMethod]
         public void GitHubApi_CreateApi_Success()
         {
@@ -44,11 +36,20 @@ namespace GitHubExplorer.Tests.Repositories
         }
 
         [TestMethod]
-        public void GitHubApi_UsersSearch_Success()
+        public void GitHubApi_FindUser_Success()
         {
             GitHubExplorer.Repository.GitHubApi gitHubApi = new Repository.GitHubApi("https://api.github.com/");
+            var result = gitHubApi.GetUserByLogin("test");
 
-            var result = gitHubApi.GetUsersByLogin("test1");
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.Login);
+        }
+
+        [TestMethod]
+        public void GitHubApi_GetUserRepos_Success()
+        {
+            GitHubExplorer.Repository.GitHubApi gitHubApi = new Repository.GitHubApi("https://api.github.com/");
+            var result = gitHubApi.GetUserRepos("test");
 
             Assert.IsNotNull(result);
         }

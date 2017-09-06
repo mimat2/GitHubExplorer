@@ -33,14 +33,28 @@
 <div class="jumbotron">
     <div class="row">
         <div class="col-md-4">
-            @Html.TextBox("userName", null, new { placeholder = "Input value" })
-            <input type="button" value="Search users" id="btnSearchUsers" />
+            @Html.TextBox("userName", null, new { placeholder = "Input username" })
+            <input type="button" value="Find user" id="btnFindUser" />
+
+            <table id="userReposTable">
+                <thead>
+                    <tr>
+                        <td>Login</td>
+                        <td>Name</td>
+                        <td>Location</td>
+                        <td>AvatarUrl</td>
+                        <td>ReposUrl</td>
+                    </tr>
+                </thead>
+                <tbody id="userReposData"></tbody>
+            </table>  
+
             <script>
                 $(function () {
-                    $('#btnSearchUsers').unbind('click');
-                    $('#btnSearchUsers').on('click', function () {
+                    $('#btnFindUser').unbind('click');
+                    $('#btnFindUser').on('click', function () {
                         $.ajax({
-                            url: "/Home/SearchUsers",
+                            url: "/Home/FindUser",
                             type: 'POST',
                             contentType: "application/json; charset=utf-8",
                             dataType: 'json',
@@ -49,14 +63,33 @@
                             }),
                             async: false,
                             success: function (outData) {
-                                $.each(outData, function (key, val) {
-                                    var tr = $('<tr></tr>');
-                                    $.each(val, function (k, v) {
-                                        $('<td>' + v + '</td>').appendTo(tr);
-                                    });
-                                    tr.appendTo('#tableData');
-                                });
-                            }
+                                var tableData = document.getElementById("userReposData");
+                                tableData.innerHTML = "";
+                                //$.each(outData, function () {
+                                    //$.each(outData, function (key, val) {
+                                    //var tr = $('<tr></tr>');
+                                    //$.each(val, function (k, v) {
+                                    //    $('<td>' + v + '</td>').appendTo(tr);
+                                    //});
+                                    //tr.appendTo('#usersTableData');
+                                    var tr = '';
+                                    tr = tr + "<tr>";
+                                    tr = tr + "<td>" + outData.Login + "</td>";
+                                    tr = tr + "<td>" + outData.Name + "</td>";
+                                    tr = tr + "<td>" + outData.Location + "</td>";
+                                    tr = tr + "<td> <img src='" + outData.AvatarUrl + "' height='100' width='100'></img> </td>";
+
+                                    for (var i = 0; i < outData.UserRepos.length; i++) {
+                                    }
+                                    tr = tr + "</tr>";
+                                    $('#userReposData').append(tr);  
+                                //});
+                                
+                            },
+                            error: function (xhr) {
+                                alert('No Valid Data');
+                            }  
+                            
                         });
                     });
                 });

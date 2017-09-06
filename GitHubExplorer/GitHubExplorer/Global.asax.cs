@@ -19,6 +19,7 @@ namespace GitHubExplorer
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Repository = new MockedRepository();
+            //Repository = new GitHubApi("https://api.github.com/");
         }
 
         public static IUsersRepository Repository;
