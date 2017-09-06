@@ -1,7 +1,0 @@
-C:\Users\mimat2\Desktop\TestDev\GitHubExplorer\GitHubExplorer\GitHubExplorer\GitHubExplorer.Shared\bin\Debug\GitHubExplorer.Shared.dll
-C:\Users\mimat2\Desktop\TestDev\GitHubExplorer\GitHubExplorer\GitHubExplorer\GitHubExplorer.Shared\bin\Debug\GitHubExplorer.Shared.pdb
-C:\Users\mimat2\Desktop\TestDev\GitHubExplorer\GitHubExplorer\GitHubExplorer\GitHubExplorer.Shared\bin\Debug\Newtonsoft.Json.dll
-C:\Users\mimat2\Desktop\TestDev\GitHubExplorer\GitHubExplorer\GitHubExplorer\GitHubExplorer.Shared\bin\Debug\Newtonsoft.Json.xml
-C:\Users\mimat2\Desktop\TestDev\GitHubExplorer\GitHubExplorer\GitHubExplorer\GitHubExplorer.Shared\obj\Debug\GitHubExplorer.Shared.csproj.CoreCompileInputs.cache
-C:\Users\mimat2\Desktop\TestDev\GitHubExplorer\GitHubExplorer\GitHubExplorer\GitHubExplorer.Shared\obj\Debug\GitHubExplorer.Shared.dll
-C:\Users\mimat2\Desktop\TestDev\GitHubExplorer\GitHubExplorer\GitHubExplorer\GitHubExplorer.Shared\obj\Debug\GitHubExplorer.Shared.pdb

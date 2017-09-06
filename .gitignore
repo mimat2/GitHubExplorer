@@ -1,2 +1,9 @@
 /GitHubExplorer/GitHubExplorer/obj
 /GitHubExplorer/GitHubExplorer/bin
+/GitHubExplorer/GitHubExplorer.Repository/bin
+/GitHubExplorer/GitHubExplorer.Repository/obj
+/GitHubExplorer/GitHubExplorer.Shared/obj
+/GitHubExplorer/GitHubExplorer.Shared/bin
+/GitHubExplorer/GitHubExplorer.Tests/obj
+/GitHubExplorer/GitHubExplorer.Tests/bin
+/GitHubExplorer/TestResults
