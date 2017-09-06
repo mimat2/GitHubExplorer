@@ -89,6 +89,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Repositories\GitHubApiTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
@@ -99,6 +100,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GitHubExplorer.Repository\GitHubExplorer.Repository.csproj">
+      <Project>{a7e52844-b6ae-4bd7-b55e-edf0ca20e0bf}</Project>
+      <Name>GitHubExplorer.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GitHubExplorer.Shared\GitHubExplorer.Shared.csproj">
+      <Project>{7F9DD00A-39CF-4650-930B-2C0A004E765B}</Project>
+      <Name>GitHubExplorer.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GitHubExplorer\GitHubExplorer.csproj">
       <Project>{38177093-5C6D-4E36-8DDF-0172C212C14F}</Project>
       <Name>GitHubExplorer</Name>

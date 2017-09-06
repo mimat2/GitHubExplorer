@@ -33,49 +33,34 @@
 <div class="jumbotron">
     <div class="row">
         <div class="col-md-4">
-
-            @*<form id="MyForm">
-                <input type="text" name="userName" />
-                <input type="button" value="SearchUsers" id="btnSearchUsers" />
-            </form>
-
+            @Html.TextBox("userName", null, new { placeholder = "Input value" })
+            <input type="button" value="Search users" id="btnSearchUsers" />
             <script>
                 $(function () {
-                    $("#SearchUsers").click(function (e) {
-                        var dataToPost = $("#MyForm").serialize()
-                        $.ajax(
-                            {
-                                type: "POST",
-                                data: dataToPost,
-                                url: "Home/SearchUsers"
-                            })
-                    })
-                })
-            </script>*@
-
-            @Html.TextBox("userName", null, new { placeholder = "Input value" })
-                <input type="button" value="Search users" id="btnSearchUsers" />
-
-                <script>
-                    $(function () {
-                        $('#btnSearchUsers').unbind('click');
-                        $('#btnSearchUsers').on('click', function () {
-                            $.ajax({
-                                url: "/Home/SearchUsers",
-                                type: 'POST',
-                                contentType: "application/json; charset=utf-8",
-                                dataType: 'json',
-                                data: JSON.stringify({
-                                    userName: $("#userName").val()
-                                }),
-                                async: false
-                            });
+                    $('#btnSearchUsers').unbind('click');
+                    $('#btnSearchUsers').on('click', function () {
+                        $.ajax({
+                            url: "/Home/SearchUsers",
+                            type: 'POST',
+                            contentType: "application/json; charset=utf-8",
+                            dataType: 'json',
+                            data: JSON.stringify({
+                                userName: $("#userName").val()
+                            }),
+                            async: false,
+                            success: function (outData) {
+                                $.each(outData, function (key, val) {
+                                    var tr = $('<tr></tr>');
+                                    $.each(val, function (k, v) {
+                                        $('<td>' + v + '</td>').appendTo(tr);
+                                    });
+                                    tr.appendTo('#tableData');
+                                });
+                            }
                         });
                     });
-                </script>
-
+                });
+            </script>
         </div>
     </div>
 </div>
-
-@*" / homeController/searchUsers",*@

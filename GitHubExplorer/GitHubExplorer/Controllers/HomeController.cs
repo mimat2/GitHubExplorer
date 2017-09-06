@@ -15,11 +15,17 @@ namespace GitHubExplorer.Controllers
         }
 
         [HttpPost]        
-        public ActionResult SearchUsers(string userName)
+        public JsonResult SearchUsers(string userName)
         {
             ViewBag.Message = userName;
+            //GitHubExplorer.Repository.GitHubApi gitHubApi = new Repository.GitHubApi("https://api.github.com/");
+            //var users = gitHubApi.GetUsersByLogin(userName);
+            var users = MvcApplication.Repository.GetUsersByLogin(userName);
 
-            return View("Index");
+
+            return Json(users.ToList(), JsonRequestBehavior.AllowGet);
+
+            //return View("Index");
         }
 
         public ActionResult About()

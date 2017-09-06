@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GitHubExplorer.Repository;
+using GitHubExplorer.Shared.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +18,9 @@ namespace GitHubExplorer
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Repository = new MockedRepository();
         }
+
+        public static IUsersRepository Repository;
     }
 }

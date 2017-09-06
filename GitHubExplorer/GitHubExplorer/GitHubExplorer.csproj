@@ -287,6 +287,16 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GitHubExplorer.Repository\GitHubExplorer.Repository.csproj">
+      <Project>{a7e52844-b6ae-4bd7-b55e-edf0ca20e0bf}</Project>
+      <Name>GitHubExplorer.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GitHubExplorer.Shared\GitHubExplorer.Shared.csproj">
+      <Project>{7F9DD00A-39CF-4650-930B-2C0A004E765B}</Project>
+      <Name>GitHubExplorer.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -1,0 +1,10 @@
+C:\Users\mimat2\Desktop\TestDev\GitHubExplorer\GitHubExplorer\GitHubExplorer\GitHubExplorer.Repository\bin\Debug\GitHubExplorer.Repository.dll
+C:\Users\mimat2\Desktop\TestDev\GitHubExplorer\GitHubExplorer\GitHubExplorer\GitHubExplorer.Repository\bin\Debug\GitHubExplorer.Repository.pdb
+C:\Users\mimat2\Desktop\TestDev\GitHubExplorer\GitHubExplorer\GitHubExplorer\GitHubExplorer.Repository\obj\Debug\GitHubExplorer.Repository.csproj.CoreCompileInputs.cache
+C:\Users\mimat2\Desktop\TestDev\GitHubExplorer\GitHubExplorer\GitHubExplorer\GitHubExplorer.Repository\obj\Debug\GitHubExplorer.Repository.dll
+C:\Users\mimat2\Desktop\TestDev\GitHubExplorer\GitHubExplorer\GitHubExplorer\GitHubExplorer.Repository\obj\Debug\GitHubExplorer.Repository.pdb
+C:\Users\mimat2\Desktop\TestDev\GitHubExplorer\GitHubExplorer\GitHubExplorer\GitHubExplorer.Repository\bin\Debug\Newtonsoft.Json.dll
+C:\Users\mimat2\Desktop\TestDev\GitHubExplorer\GitHubExplorer\GitHubExplorer\GitHubExplorer.Repository\bin\Debug\Newtonsoft.Json.xml
+C:\Users\mimat2\Desktop\TestDev\GitHubExplorer\GitHubExplorer\GitHubExplorer\GitHubExplorer.Repository\obj\Debug\GitHubExplorer.Repository.csprojResolveAssemblyReference.cache
+C:\Users\mimat2\Desktop\TestDev\GitHubExplorer\GitHubExplorer\GitHubExplorer\GitHubExplorer.Repository\bin\Debug\GitHubExplorer.Shared.dll
+C:\Users\mimat2\Desktop\TestDev\GitHubExplorer\GitHubExplorer\GitHubExplorer\GitHubExplorer.Repository\bin\Debug\GitHubExplorer.Shared.pdb
