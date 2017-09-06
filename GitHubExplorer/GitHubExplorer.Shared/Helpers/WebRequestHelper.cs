@@ -21,6 +21,11 @@ namespace GitHubExplorer.Shared.Helpers
 
             using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
             {
+                //if(response.StatusCode != HttpStatusCode.OK)
+                //{
+                //    throw new Exception($"Response StatusCode is not 'OK' - StatusDescription: {response.StatusDescription}");
+                //}
+
                 using (StreamReader reader = new StreamReader(response.GetResponseStream()))
                 {
                     return reader.ReadToEnd();

@@ -16,7 +16,7 @@ namespace GitHubExplorer.Repository
             {
                 Name = "User name",
                 Location = "User Location",
-                AvatarUrl = "https://i.vimeocdn.com/portrait/58832_300x300"
+                Avatar_Url = "https://i.vimeocdn.com/portrait/58832_300x300"
             };
 
             mockedUserRepos = new List<UserRepoDto>();

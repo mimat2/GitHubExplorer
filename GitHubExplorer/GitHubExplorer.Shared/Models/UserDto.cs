@@ -17,7 +17,7 @@ namespace GitHubExplorer.Shared.Models
         public string Login { get; set; }
         public string Name { get; set; }
         public string Location { get; set; }
-        public string AvatarUrl { get; set; }
+        public string Avatar_Url { get; set; }
         public IEnumerable<UserRepoDto> UserRepos { get; set; }
     }
 }

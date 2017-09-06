@@ -14,7 +14,7 @@ namespace GitHubExplorer.Models
             Login = userDto.Login;
             Name = userDto.Name;
             Location = userDto.Location;
-            AvatarUrl = userDto.AvatarUrl;
+            AvatarUrl = userDto.Avatar_Url;
             UserRepos = userDto.UserRepos;
         }
 

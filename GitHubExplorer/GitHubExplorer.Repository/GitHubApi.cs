@@ -22,16 +22,16 @@ namespace GitHubExplorer.Repository
         {
             ApiAddress = apiAddress.TrimEnd('/');
 
-            CheckApiAvailability();
+            CheckAvailability();
         }
 
-        private void CheckApiAvailability()
+        private void CheckAvailability()
         {
             var responseString = WebRequestHelper.CallGetRequest(ApiAddress);
 
             if (responseString == null)
             {
-                throw new Exception("Api address response is null");
+                throw new Exception("Api is unavailable");
             }
         }
 

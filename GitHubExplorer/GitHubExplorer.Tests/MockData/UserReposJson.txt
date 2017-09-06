@@ -72,7 +72,7 @@
     "svn_url": "https://github.com/jskeet/artman",
     "homepage": "",
     "size": 619,
-    "stargazers_count": 0,
+    "stargazers_count": 1,
     "watchers_count": 0,
     "language": "Python",
     "has_issues": false,

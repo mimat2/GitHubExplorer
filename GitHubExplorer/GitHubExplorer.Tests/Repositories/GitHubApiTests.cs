@@ -36,10 +36,11 @@ namespace GitHubExplorer.Tests.Repositories
         }
 
         [TestMethod]
-        public void GitHubApi_FindUser_Success()
+        public void GitHubApi_GetUserByLogin_Success()
         {
             GitHubExplorer.Repository.GitHubApi gitHubApi = new Repository.GitHubApi("https://api.github.com/");
-            var result = gitHubApi.GetUserByLogin("test");
+
+            var result = gitHubApi.GetUserByLogin("mimat2");
 
             Assert.IsNotNull(result);
             Assert.IsNotNull(result.Login);
@@ -49,9 +50,23 @@ namespace GitHubExplorer.Tests.Repositories
         public void GitHubApi_GetUserRepos_Success()
         {
             GitHubExplorer.Repository.GitHubApi gitHubApi = new Repository.GitHubApi("https://api.github.com/");
-            var result = gitHubApi.GetUserRepos("test");
+
+            var result = gitHubApi.GetUserRepos("mimat2");
 
             Assert.IsNotNull(result);
+            Assert.IsTrue(result.Any());
+        }
+
+        [TestMethod]
+        public void GitHubApi_GetUserWithReposByLogin_Success()
+        {
+            GitHubExplorer.Repository.GitHubApi gitHubApi = new Repository.GitHubApi("https://api.github.com/");
+
+            var result = gitHubApi.GetUserWithReposByLogin("mimat2");
+
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.UserRepos);
+            Assert.IsTrue(result.UserRepos.Any());
         }
     }
 }

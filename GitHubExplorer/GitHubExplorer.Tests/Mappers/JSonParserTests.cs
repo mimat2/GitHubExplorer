@@ -23,6 +23,10 @@ namespace GitHubExplorer.Tests.Mappers
             var deserializedUser = JsonConvert.DeserializeObject<UserDto>(userJson);
 
             Assert.IsNotNull(deserializedUser);
+            Assert.IsNotNull(deserializedUser.Login);
+            Assert.IsNotNull(deserializedUser.Name);
+            Assert.IsNotNull(deserializedUser.Location);
+            Assert.IsNotNull(deserializedUser.Avatar_Url);
         }
 
         [TestMethod]
@@ -35,6 +39,13 @@ namespace GitHubExplorer.Tests.Mappers
             var deserializedUserRepos = JsonConvert.DeserializeObject<List<UserRepoDto>>(userReposJson);
 
             Assert.IsNotNull(deserializedUserRepos);
+            Assert.IsTrue(deserializedUserRepos.Any());
+            var firstRepo = deserializedUserRepos.First();
+            Assert.IsNotNull(firstRepo.Name);
+            Assert.IsNotNull(firstRepo.Description);
+            Assert.IsNotNull(firstRepo.Stargazers_Count);
+            Assert.AreNotEqual(0, firstRepo.Stargazers_Count);
+            Assert.IsNotNull(firstRepo.Url);
         }
     }
 }
