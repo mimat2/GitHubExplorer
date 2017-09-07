@@ -40,6 +40,7 @@ namespace GitHubExplorer.Repository
         public UserDto GetUserByLogin(string userLogin)
         {
             mockedUser.Login = userLogin;
+            mockedUser.Name = userLogin;
 
             return mockedUser;
         }
@@ -47,6 +48,7 @@ namespace GitHubExplorer.Repository
         public UserDto GetUserWithReposByLogin(string userLogin)
         {
             mockedUser.Login = userLogin;
+            mockedUser.Name = userLogin;
             mockedUser.UserRepos = GetUserRepos(mockedUser.Login);
 
             return mockedUser;

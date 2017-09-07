@@ -19,11 +19,27 @@ namespace GitHubExplorer
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            //Repository = new MockedRepository();
-            Repository = new GitHubApi(gitHubApiAddress);
+            switch (dataSource)
+            {
+                case "GitHub":
+                    {
+                        Repository = new GitHubApi(gitHubApiAddress);
+                        break;
+                    }
+                case "Mock":
+                    {
+                        Repository = new MockedRepository();
+                        break;
+                    }
+                default:
+                    {
+                        throw new Exception("Wrong DataSource config - Application start fail");
+                    }
+            }
         }
 
         public static IUsersRepository Repository;
         private string gitHubApiAddress = WebConfigurationManager.AppSettings["GitHubApiAddress"];
+        private string dataSource = WebConfigurationManager.AppSettings["DataSource"];
     }
 }
