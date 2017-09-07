@@ -55,8 +55,7 @@ namespace GitHubExplorer.Repository
             var userReposUrl = $"{ApiAddress}/users/{userLogin}/repos";
             var userReposResponseString = WebRequestHelper.CallGetRequest(userReposUrl);
             var userRepos = JsonConvert.DeserializeObject<List<UserRepoDto>>(userReposResponseString);
-            userRepos.OrderByDescending(r => r.Stargazers_Count).Take(bestReposCount);
-            return userRepos;
+            return userRepos.OrderByDescending(r => r.Stargazers_Count).Take(bestReposCount);
         }
     }
 }

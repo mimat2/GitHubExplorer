@@ -2,98 +2,92 @@
     ViewBag.Title = "Home Page";
 }
 
-@*<div class="jumbotron">
-        <h1>ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </div>
-    </div>*@
-
 <div class="jumbotron">
     <div class="row">
-        <div class="col-md-4">
-            @Html.TextBox("userName", null, new { placeholder = "Input username" })
+        <div>
+            @Html.TextBox("userNameToFind", null, new { placeholder = "Input name" })
             <input type="button" value="Find user" id="btnFindUser" />
-
-            <table id="userReposTable">
-                <thead>
-                    <tr>
-                        <td>Login</td>
-                        <td>Name</td>
-                        <td>Location</td>
-                        <td>AvatarUrl</td>
-                        <td>ReposUrl</td>
-                    </tr>
-                </thead>
-                <tbody id="userReposData"></tbody>
-            </table>  
-
-            <script>
-                $(function () {
-                    $('#btnFindUser').unbind('click');
-                    $('#btnFindUser').on('click', function () {
-                        $.ajax({
-                            url: "/Home/FindUser",
-                            type: 'POST',
-                            contentType: "application/json; charset=utf-8",
-                            dataType: 'json',
-                            data: JSON.stringify({
-                                userName: $("#userName").val()
-                            }),
-                            async: false,
-                            success: function (outData) {
-                                var tableData = document.getElementById("userReposData");
-                                tableData.innerHTML = "";
-                                //$.each(outData, function () {
-                                    //$.each(outData, function (key, val) {
-                                    //var tr = $('<tr></tr>');
-                                    //$.each(val, function (k, v) {
-                                    //    $('<td>' + v + '</td>').appendTo(tr);
-                                    //});
-                                    //tr.appendTo('#usersTableData');
-                                    var tr = '';
-                                    tr = tr + "<tr>";
-                                    tr = tr + "<td>" + outData.Login + "</td>";
-                                    tr = tr + "<td>" + outData.Name + "</td>";
-                                    tr = tr + "<td>" + outData.Location + "</td>";
-                                    tr = tr + "<td> <img src='" + outData.AvatarUrl + "' height='100' width='100'></img> </td>";
-
-                                    for (var i = 0; i < outData.UserRepos.length; i++) {
-                                    }
-                                    tr = tr + "</tr>";
-                                    $('#userReposData').append(tr);  
-                                //});
-                                
-                            },
-                            error: function (xhr) {
-                                alert('No Valid Data');
-                            }  
-                            
-                        });
-                    });
-                });
-            </script>
         </div>
     </div>
+
+    <div class="row top-buffer">
+        <div class="col-xs-2">
+            <div id="userName"></div>
+            <div id="userLocation"></div>
+        </div>
+        <div class="col-xs-2">
+            <div id="userAvatar">
+                <img width="100" height="100" hidden>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="tableDiv">
+        <table id="userReposTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Stars</th>
+                    <th>Svn Url</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
 </div>
+@section Styles{
+    @Styles.Render("~/Content/datatables/css")
+    @Scripts.Render("~/Content/css")
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/datatables")
+    <script>
+        $(document).ready(function () {
+            //$(function () {
+            $('#userReposTable').DataTable({
+                "paging": false,
+                "ordering": false,
+                "info": false
+            });
+            document.getElementById("tableDiv").style.visibility = 'hidden';
+            $('#btnFindUser').unbind('click');
+            $('#btnFindUser').on('click', function () {
+                $.ajax({
+                    url: "/Home/FindUser",
+                    type: 'POST',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        userName: $("#userNameToFind").val()
+                    }),
+                    async: false,
+                    success: function (outData) {
+                        document.getElementById("tableDiv").style.visibility = 'visible';
+                        //$('#userName').html(outData.Name);
+                        //$('#userLocation').html(outData.Location);
+                        document.getElementById("userName").innerHTML = outData.Name;
+                        document.getElementById("userLocation").innerHTML = outData.Location;
+                        document.getElementById("userAvatar").innerHTML = "<img src='" + outData.Avatar_Url + "' height='100' width='100'></img>";
+                        var table = $('#userReposTable').DataTable();
+                        table.clear();
+
+                        for (var i = 0; i < outData.UserRepos.length; i++) {
+                            table.row.add([
+                                outData.UserRepos[i].Name,
+                                outData.UserRepos[i].Description,
+                                outData.UserRepos[i].Stargazers_Count,
+                                "<a href='" + outData.UserRepos[i].Svn_Url + "' target='_blank'>" + outData.UserRepos[i].Svn_Url + "</a>"
+                            ]).draw(false);
+                        }
+                    },
+                    error: function (xhr) {
+                        alert('No Valid Data');
+                    }
+
+                });
+            });
+        });
+    </script>
+}

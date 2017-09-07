@@ -19,8 +19,8 @@ namespace GitHubExplorer
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            Repository = new MockedRepository();
-            //Repository = new GitHubApi(gitHubApiAddress);
+            //Repository = new MockedRepository();
+            Repository = new GitHubApi(gitHubApiAddress);
         }
 
         public static IUsersRepository Repository;

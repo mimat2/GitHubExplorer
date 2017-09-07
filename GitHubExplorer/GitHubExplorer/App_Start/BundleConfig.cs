@@ -26,6 +26,29 @@ namespace GitHubExplorer
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
+                        "~/Scripts/DataTables/jquery.dataTables.js",
+                        "~/Scripts/DataTables/datatables.bootstrap.js",
+                        "~/Scripts/DataTables/datatables.responsive.js"));
+
+            bundles.Add(new StyleBundle("~/Content/datatables/css").Include(
+                        "~/Content/DataTables/css/jquery.dataTables.css"));
+            
+
+
+
+
+
+            //bundles.Add(new StyleBundle("~/Content/plugins/dataTables/dataTablesStyles").Include(
+            //"~/Content/plugins/dataTables/datatables.min.css"));
+
+            //// dataTables
+            //bundles.Add(new ScriptBundle("~/plugins/dataTables").Include(
+            //          "~/Scripts/plugins/dataTables/jquery.dataTables.js",
+            //          "~/Scripts/plugins/dataTables/dataTables.bootstrap.js",
+            //          "~/Scripts/plugins/dataTables/dataTables.responsive.js",
+            //          "~/Scripts/plugins/dataTables/dataTables.tableTools.min.js"));
         }
     }
 }

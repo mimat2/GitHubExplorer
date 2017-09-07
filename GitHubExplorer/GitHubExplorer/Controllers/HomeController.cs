@@ -21,8 +21,7 @@ namespace GitHubExplorer.Controllers
         {
             ViewBag.Message = userName;
             var userDto = MvcApplication.Repository.GetUserWithReposByLogin(userName);
-            UserViewModel userViewModel = new UserViewModel(userDto);
-            return Json(userViewModel, JsonRequestBehavior.AllowGet);
+            return Json(userDto, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult About()

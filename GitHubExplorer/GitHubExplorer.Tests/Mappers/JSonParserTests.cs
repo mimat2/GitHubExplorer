@@ -45,7 +45,7 @@ namespace GitHubExplorer.Tests.Mappers
             Assert.IsNotNull(firstRepo.Description);
             Assert.IsNotNull(firstRepo.Stargazers_Count);
             Assert.AreNotEqual(0, firstRepo.Stargazers_Count);
-            Assert.IsNotNull(firstRepo.Url);
+            Assert.IsNotNull(firstRepo.Svn_Url);
         }
     }
 }

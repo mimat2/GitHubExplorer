@@ -14,6 +14,7 @@ namespace GitHubExplorer.Repository
         {
             mockedUser = new UserDto
             {
+                Login = "User login",
                 Name = "User name",
                 Location = "User Location",
                 Avatar_Url = "https://i.vimeocdn.com/portrait/58832_300x300"
@@ -28,7 +29,7 @@ namespace GitHubExplorer.Repository
                     Description = "Repo description",
                     Name = "Repo name",
                     Stargazers_Count = rand.Next(0, 100),
-                    Url = "http://wwww.google.com"
+                    Svn_Url = "http://www.google.com"
                 });
             }
         }
