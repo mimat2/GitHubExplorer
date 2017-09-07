@@ -39,23 +39,41 @@ namespace GitHubExplorer.Repository
         {
             var userUrl = $"{ApiAddress}/users/{userLogin}";
             var userResponseString = WebRequestHelper.CallGetRequest(userUrl);
+            if(userResponseString.Equals("NotFound"))
+            {
+                return new UserDto
+                {
+                    Name = "User not found"
+                };
+            }
             var foundUser = JsonConvert.DeserializeObject<UserDto>(userResponseString);
-            return foundUser;            
+            return foundUser;
         }
 
         public UserDto GetUserWithReposByLogin(string userLogin)
         {
             var foundUser = GetUserByLogin(userLogin);
-            foundUser.UserRepos = GetUserRepos(foundUser.Login);
+            if (!string.IsNullOrWhiteSpace(foundUser.Login))
+            {
+                foundUser.UserRepos = GetUserRepos(foundUser.Login);
+            }
             return foundUser;
         }
 
         public IEnumerable<UserRepoDto> GetUserRepos(string userLogin, int bestReposCount = 5)
         {
-            var userReposUrl = $"{ApiAddress}/users/{userLogin}/repos";
-            var userReposResponseString = WebRequestHelper.CallGetRequest(userReposUrl);
-            var userRepos = JsonConvert.DeserializeObject<List<UserRepoDto>>(userReposResponseString);
-            return userRepos.OrderByDescending(r => r.Stargazers_Count).Take(bestReposCount);
+            try
+            {
+                var userReposUrl = $"{ApiAddress}/users/{userLogin}/repos";
+                var userReposResponseString = WebRequestHelper.CallGetRequest(userReposUrl);
+                var userRepos = JsonConvert.DeserializeObject<List<UserRepoDto>>(userReposResponseString);
+                return userRepos.OrderByDescending(r => r.Stargazers_Count).Take(bestReposCount);
+            }
+            catch (Exception ex)
+            {
+                //log exception
+                return new List<UserRepoDto>();
+            }
         }
     }
 }

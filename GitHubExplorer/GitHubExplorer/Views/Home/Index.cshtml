@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <div class="row" id="tableDiv">
+    <div class="row" id="tableDiv" style="visibility:hidden">
         <table id="userReposTable">
             <thead>
                 <tr>
@@ -45,15 +45,14 @@
     @Scripts.Render("~/bundles/datatables")
     <script>
         $(document).ready(function () {
-            //$(function () {
             $('#userReposTable').DataTable({
                 "paging": false,
                 "ordering": false,
                 "info": false
             });
-            document.getElementById("tableDiv").style.visibility = 'hidden';
             $('#btnFindUser').unbind('click');
             $('#btnFindUser').on('click', function () {
+                document.getElementById("tableDiv").style.visibility = 'hidden';
                 $.ajax({
                     url: "/Home/FindUser",
                     type: 'POST',
@@ -64,14 +63,23 @@
                     }),
                     async: false,
                     success: function (outData) {
-                        document.getElementById("tableDiv").style.visibility = 'visible';
                         //$('#userName').html(outData.Name);
                         //$('#userLocation').html(outData.Location);
                         document.getElementById("userName").innerHTML = outData.Name;
                         document.getElementById("userLocation").innerHTML = outData.Location;
-                        document.getElementById("userAvatar").innerHTML = "<img src='" + outData.Avatar_Url + "' height='100' width='100'></img>";
+                        if (outData.Avatar_Url !== null) {
+                            document.getElementById("userAvatar").innerHTML = "<img src='" + outData.Avatar_Url + "' height='100' width='100'></img>";
+                        }
+                        else {
+                            document.getElementById("userAvatar").innerHTML = "<img hidden>";
+                        }
+                        
                         var table = $('#userReposTable').DataTable();
                         table.clear();
+
+                        if (outData.UserRepos.length > 0) {
+                            document.getElementById("tableDiv").style.visibility = 'visible';
+                        }
 
                         for (var i = 0; i < outData.UserRepos.length; i++) {
                             table.row.add([
@@ -83,7 +91,7 @@
                         }
                     },
                     error: function (xhr) {
-                        alert('No Valid Data');
+                        document.getElementById("userName").innerHTML = "Internal server error";
                     }
 
                 });

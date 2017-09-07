@@ -19,22 +19,17 @@ namespace GitHubExplorer.Controllers
         [HttpPost]
         public JsonResult FindUser(string userName)
         {
-            ViewBag.Message = userName;
             var userDto = MvcApplication.Repository.GetUserWithReposByLogin(userName);
             return Json(userDto, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }
