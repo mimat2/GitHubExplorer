@@ -19,13 +19,12 @@ namespace GitHubExplorer.Shared.Helpers
                 request.Proxy = null;
                 request.UserAgent = "GitHubExplorer";
 
-                string responseString = string.Empty;
-
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 {
-                    return reader.ReadToEnd();
+                    using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                    {
+                        return reader.ReadToEnd();
+                    }
                 }
             }
             catch (WebException wex)

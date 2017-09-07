@@ -31,8 +31,6 @@ namespace GitHubExplorer.Tests.Repositories
             {
                 Assert.IsTrue(ex is UriFormatException);
             }
-
-            Assert.IsTrue(true);
         }
 
         [TestMethod]
