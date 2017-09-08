@@ -38,7 +38,7 @@ namespace GitHubExplorer.Repository
             }
             catch (Exception ex)
             {
-                //log exception
+                LogHelper.LogException(ex);
                 throw;
             }
         }
@@ -58,7 +58,7 @@ namespace GitHubExplorer.Repository
             }
             catch (Exception ex)
             {
-                //log exception
+                LogHelper.LogException(ex);
                 throw;
             }
         }
@@ -84,8 +84,8 @@ namespace GitHubExplorer.Repository
             }
             catch (Exception ex)
             {
-                //log exception
-                return new List<UserRepoDto>();
+                LogHelper.LogException(ex);
+                throw;
             }
         }
     }

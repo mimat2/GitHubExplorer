@@ -33,10 +33,12 @@ namespace GitHubExplorer.Shared.Helpers
                 {
                     return ((HttpWebResponse)wex.Response).StatusCode.ToString();
                 }
+                LogHelper.LogException(wex);
                 throw;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                LogHelper.LogException(ex);
                 throw;
             }
         }
