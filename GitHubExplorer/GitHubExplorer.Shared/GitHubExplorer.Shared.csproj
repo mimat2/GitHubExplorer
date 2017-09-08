@@ -46,8 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\LogHelper.cs" />
+    <Compile Include="Helpers\ConsoleLogger.cs" />
+    <Compile Include="Helpers\NLogHelper.cs" />
     <Compile Include="Helpers\WebRequestHelper.cs" />
+    <Compile Include="Interfaces\ILogger.cs" />
     <Compile Include="Interfaces\IUser.cs" />
     <Compile Include="Interfaces\IUserRepo.cs" />
     <Compile Include="Interfaces\IUsersRepository.cs" />

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GitHubExplorer.Shared.Helpers
 {
@@ -33,12 +28,6 @@ namespace GitHubExplorer.Shared.Helpers
                 {
                     return ((HttpWebResponse)wex.Response).StatusCode.ToString();
                 }
-                LogHelper.LogException(wex);
-                throw;
-            }
-            catch (Exception ex)
-            {
-                LogHelper.LogException(ex);
                 throw;
             }
         }

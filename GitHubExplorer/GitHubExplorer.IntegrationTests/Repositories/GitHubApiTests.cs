@@ -1,21 +1,21 @@
 ﻿using GitHubExplorer.Repository;
+using GitHubExplorer.Shared.Helpers;
 using GitHubExplorer.Shared.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GitHubExplorer.IntegrationTests.Repositories
 {
     [TestClass]
     public class GitHubApiTests
     {
+        private ILogger logger = new ConsoleLogger();
+
         [TestMethod]
         public void GitHubApi_CreateApi_Success()
         {
-            GitHubApi gitHubApi = new GitHubApi("https://api.github.com/");
+            GitHubApi gitHubApi = new GitHubApi("https://api.github.com/", logger);
             
             Assert.IsNotNull(gitHubApi);
         }
@@ -25,7 +25,7 @@ namespace GitHubExplorer.IntegrationTests.Repositories
         {
             try
             {
-                GitHubApi gitHubApi = new GitHubApi("invalid_address");
+                GitHubApi gitHubApi = new GitHubApi("invalid_address", logger);
                 Assert.Fail("no exception thrown");
             }
             catch (Exception ex)
@@ -37,7 +37,7 @@ namespace GitHubExplorer.IntegrationTests.Repositories
         [TestMethod]
         public void GitHubApi_GetUserByLogin_GetAndIsTheSame()
         {
-            GitHubApi gitHubApi = new GitHubApi("https://api.github.com/");
+            GitHubApi gitHubApi = new GitHubApi("https://api.github.com/", logger);
             string login = "mimat2";
 
             var result = gitHubApi.GetUserByLogin(login);
@@ -51,7 +51,7 @@ namespace GitHubExplorer.IntegrationTests.Repositories
         [TestMethod]
         public void GitHubApi_GetUserRepos_GetAndExistsAny()
         {
-            GitHubApi gitHubApi = new GitHubApi("https://api.github.com/");
+            GitHubApi gitHubApi = new GitHubApi("https://api.github.com/", logger);
 
             var result = gitHubApi.GetUserRepos("mimat2");
 
@@ -62,7 +62,7 @@ namespace GitHubExplorer.IntegrationTests.Repositories
         [TestMethod]
         public void GitHubApi_GetUserWithReposByLogin_GetUserAndExistAnyRepo()
         {
-            GitHubApi gitHubApi = new GitHubApi("https://api.github.com/");
+            GitHubApi gitHubApi = new GitHubApi("https://api.github.com/", logger);
 
             var result = gitHubApi.GetUserWithReposByLogin("mimat2");
 

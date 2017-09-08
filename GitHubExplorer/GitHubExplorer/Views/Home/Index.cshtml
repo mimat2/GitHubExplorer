@@ -63,8 +63,6 @@
                     }),
                     async: false,
                     success: function (outData) {
-                        //$('#userName').html(outData.Name);
-                        //$('#userLocation').html(outData.Location);
                         document.getElementById("userName").innerHTML = outData.Name;
                         document.getElementById("userLocation").innerHTML = outData.Location;
                         if (outData.AvatarUrl !== null) {

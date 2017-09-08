@@ -1,9 +1,4 @@
-﻿using GitHubExplorer.Models;
-using GitHubExplorer.Shared.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using GitHubExplorer.Shared.Interfaces;
 using System.Web.Mvc;
 
 namespace GitHubExplorer.Controllers
@@ -12,6 +7,15 @@ namespace GitHubExplorer.Controllers
     [Authorize]
     public class HomeController : Controller
     {
+        private readonly IUsersRepository _repository;
+        private readonly ILogger _logger;
+
+        public HomeController(IUsersRepository repository, ILogger logger)
+        {
+            _repository = repository;
+            _logger = logger;
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -20,8 +24,8 @@ namespace GitHubExplorer.Controllers
         [HttpPost]
         public JsonResult FindUser(string userName)
         {
-            LogHelper.LogInfo($"User {HttpContext.User.Identity.Name} called FindUser method with parameter: {userName}");
-            var userDto = MvcApplication.Repository.GetUserWithReposByLogin(userName);
+            _logger.LogInfo($"User {HttpContext.User.Identity.Name} called FindUser method with parameter: {userName}");
+            var userDto = _repository.GetUserWithReposByLogin(userName);
             return Json(userDto, JsonRequestBehavior.AllowGet);
         }
 
