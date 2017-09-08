@@ -45,6 +45,13 @@
     @Scripts.Render("~/bundles/datatables")
     <script>
         $(document).ready(function () {
+            $('#userNameToFind').keypress(function (event) {
+                if (event.keyCode == 13 || event.which == 13) {
+                    $('#btnFindUser').click();
+                }
+            });
+
+
             $('#userReposTable').DataTable({
                 "paging": false,
                 "ordering": false,
@@ -71,7 +78,7 @@
                         else {
                             document.getElementById("userAvatar").innerHTML = "<img hidden>";
                         }
-                        
+
                         var table = $('#userReposTable').DataTable();
                         table.clear();
 
