@@ -20,6 +20,7 @@ namespace GitHubExplorer.Controllers
         [HttpPost]
         public JsonResult FindUser(string userName)
         {
+            LogHelper.LogInfo($"User {HttpContext.User.Identity.Name} called FindUser method with parameter: {userName}");
             var userDto = MvcApplication.Repository.GetUserWithReposByLogin(userName);
             return Json(userDto, JsonRequestBehavior.AllowGet);
         }
