@@ -12,7 +12,7 @@ namespace GitHubExplorer.Tests.Helpers
     public class WebRequestHelperTests
     {
         [TestMethod]
-        public void WebRequestHelper_CallGetRequestWithCorrectUrl_Success()
+        public void WebRequestHelper_CallGetRequestWithCorrectUrl_SuccessAndAvailable()
         {
             var request = WebRequestHelper.CallGetRequest("http://www.google.com");
             Assert.IsNotNull(request);

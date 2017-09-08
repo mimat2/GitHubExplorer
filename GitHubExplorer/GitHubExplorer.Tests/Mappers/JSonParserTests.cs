@@ -14,11 +14,9 @@ namespace GitHubExplorer.Tests.Mappers
     public class JSonParserTests
     {
         [TestMethod]
-        public void JSonParser_UserDeserialize_Success()
+        public void JSonParser_UserDeserialize_SuccessAndHaveValues()
         {
-            var directory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            var path = $"{directory}\\MockData\\UserJson.txt";
-            var userJson = File.ReadAllText(path);
+            var userJson = GetMockDataFileText("UserJson");
 
             var deserializedUser = JsonConvert.DeserializeObject<UserDto>(userJson);
 
@@ -30,11 +28,9 @@ namespace GitHubExplorer.Tests.Mappers
         }
 
         [TestMethod]
-        public void JSonParser_UserReposDeserialize_Success()
+        public void JSonParser_UserReposDeserialize_SuccessAndHaveValues()
         {
-            var directory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            var path = $"{directory}\\MockData\\UserReposJson.txt";
-            var userReposJson = File.ReadAllText(path);
+            var userReposJson = GetMockDataFileText("UserReposJson");
 
             var deserializedUserRepos = JsonConvert.DeserializeObject<List<UserRepoDto>>(userReposJson);
 
@@ -46,6 +42,13 @@ namespace GitHubExplorer.Tests.Mappers
             Assert.IsNotNull(firstRepo.StargazersCount);
             Assert.AreNotEqual(0, firstRepo.StargazersCount);
             Assert.IsNotNull(firstRepo.SvnUrl);
+        }
+
+        private string GetMockDataFileText(string fileName)
+        {
+            var directory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            var path = $"{directory}\\MockData\\{fileName}.txt";
+            return File.ReadAllText(path);
         }
     }
 }

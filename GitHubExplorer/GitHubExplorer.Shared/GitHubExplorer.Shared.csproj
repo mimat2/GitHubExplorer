@@ -51,7 +51,6 @@
     <Compile Include="Interfaces\IUser.cs" />
     <Compile Include="Interfaces\IUserRepo.cs" />
     <Compile Include="Interfaces\IUsersRepository.cs" />
-    <Compile Include="Models\NullUser.cs" />
     <Compile Include="Models\UserRepoDto.cs" />
     <Compile Include="Models\UserDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

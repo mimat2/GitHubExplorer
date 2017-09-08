@@ -1,0 +1,24 @@
+2017-09-08 11:42:06.7638   LEVEL=ERROR: System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at System.Net.WebRequest.Create(String requestUriString)
+   at GitHubExplorer.Shared.Helpers.WebRequestHelper.CallGetRequest(String url) in C:\Users\mimat2\Desktop\TestDev\GitHubExplorer\GitHubExplorer\GitHubExplorer\GitHubExplorer.Shared\Helpers\WebRequestHelper.cs:line 17
+ (GitHubApi.CheckAvailability => WebRequestHelper.CallGetRequest => LogHelper.LogException) System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at System.Net.WebRequest.Create(String requestUriString)
+   at GitHubExplorer.Shared.Helpers.WebRequestHelper.CallGetRequest(String url) in C:\Users\mimat2\Desktop\TestDev\GitHubExplorer\GitHubExplorer\GitHubExplorer\GitHubExplorer.Shared\Helpers\WebRequestHelper.cs:line 17 
+
+2017-09-08 11:42:06.7888   LEVEL=ERROR: System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at System.Net.WebRequest.Create(String requestUriString)
+   at GitHubExplorer.Shared.Helpers.WebRequestHelper.CallGetRequest(String url) in C:\Users\mimat2\Desktop\TestDev\GitHubExplorer\GitHubExplorer\GitHubExplorer\GitHubExplorer.Shared\Helpers\WebRequestHelper.cs:line 42
+   at GitHubExplorer.Repository.GitHubApi.CheckAvailability() in C:\Users\mimat2\Desktop\TestDev\GitHubExplorer\GitHubExplorer\GitHubExplorer\GitHubExplorer.Repository\GitHubApi.cs:line 32
+ (GitHubApi..ctor => GitHubApi.CheckAvailability => LogHelper.LogException) System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at System.Net.WebRequest.Create(String requestUriString)
+   at GitHubExplorer.Shared.Helpers.WebRequestHelper.CallGetRequest(String url) in C:\Users\mimat2\Desktop\TestDev\GitHubExplorer\GitHubExplorer\GitHubExplorer\GitHubExplorer.Shared\Helpers\WebRequestHelper.cs:line 42
+   at GitHubExplorer.Repository.GitHubApi.CheckAvailability() in C:\Users\mimat2\Desktop\TestDev\GitHubExplorer\GitHubExplorer\GitHubExplorer\GitHubExplorer.Repository\GitHubApi.cs:line 32 
+

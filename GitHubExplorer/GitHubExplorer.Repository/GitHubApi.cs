@@ -51,7 +51,7 @@ namespace GitHubExplorer.Repository
                 var userResponseString = WebRequestHelper.CallGetRequest(userUrl);
                 if (userResponseString.Equals("NotFound"))
                 {
-                    return new NullUser();
+                    return UserDto.NullUser;
                 }
                 var foundUser = JsonConvert.DeserializeObject<UserDto>(userResponseString);
                 return foundUser;
@@ -66,7 +66,7 @@ namespace GitHubExplorer.Repository
         public IUser GetUserWithReposByLogin(string userLogin)
         {
             var foundUser = GetUserByLogin(userLogin);
-            if (!(foundUser is NullUser))
+            if (foundUser != UserDto.NullUser)
             {
                 foundUser.UserRepos = GetUserRepos(foundUser.Login);
             }

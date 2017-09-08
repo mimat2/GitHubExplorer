@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubExplorer.Repository",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubExplorer.Shared", "GitHubExplorer.Shared\GitHubExplorer.Shared.csproj", "{7F9DD00A-39CF-4650-930B-2C0A004E765B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubExplorer.IntegrationTests", "GitHubExplorer.IntegrationTests\GitHubExplorer.IntegrationTests.csproj", "{7739EB9F-92C3-4ED8-8C5D-A3AD81131529}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4C4BB566-50E8-4F38-97E0-A81B41F8F961}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,9 +91,29 @@ Global
 		{7F9DD00A-39CF-4650-930B-2C0A004E765B}.Release|x64.Build.0 = Release|Any CPU
 		{7F9DD00A-39CF-4650-930B-2C0A004E765B}.Release|x86.ActiveCfg = Release|Any CPU
 		{7F9DD00A-39CF-4650-930B-2C0A004E765B}.Release|x86.Build.0 = Release|Any CPU
+		{7739EB9F-92C3-4ED8-8C5D-A3AD81131529}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7739EB9F-92C3-4ED8-8C5D-A3AD81131529}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7739EB9F-92C3-4ED8-8C5D-A3AD81131529}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{7739EB9F-92C3-4ED8-8C5D-A3AD81131529}.Debug|ARM.Build.0 = Debug|Any CPU
+		{7739EB9F-92C3-4ED8-8C5D-A3AD81131529}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7739EB9F-92C3-4ED8-8C5D-A3AD81131529}.Debug|x64.Build.0 = Debug|Any CPU
+		{7739EB9F-92C3-4ED8-8C5D-A3AD81131529}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7739EB9F-92C3-4ED8-8C5D-A3AD81131529}.Debug|x86.Build.0 = Debug|Any CPU
+		{7739EB9F-92C3-4ED8-8C5D-A3AD81131529}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7739EB9F-92C3-4ED8-8C5D-A3AD81131529}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7739EB9F-92C3-4ED8-8C5D-A3AD81131529}.Release|ARM.ActiveCfg = Release|Any CPU
+		{7739EB9F-92C3-4ED8-8C5D-A3AD81131529}.Release|ARM.Build.0 = Release|Any CPU
+		{7739EB9F-92C3-4ED8-8C5D-A3AD81131529}.Release|x64.ActiveCfg = Release|Any CPU
+		{7739EB9F-92C3-4ED8-8C5D-A3AD81131529}.Release|x64.Build.0 = Release|Any CPU
+		{7739EB9F-92C3-4ED8-8C5D-A3AD81131529}.Release|x86.ActiveCfg = Release|Any CPU
+		{7739EB9F-92C3-4ED8-8C5D-A3AD81131529}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{11FDFB34-4BEC-473A-BEB3-B18D74C74544} = {4C4BB566-50E8-4F38-97E0-A81B41F8F961}
+		{7739EB9F-92C3-4ED8-8C5D-A3AD81131529} = {4C4BB566-50E8-4F38-97E0-A81B41F8F961}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1389FB70-4897-44AB-8FC1-C5F7C880430C}

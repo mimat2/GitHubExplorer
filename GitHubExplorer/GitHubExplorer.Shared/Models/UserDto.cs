@@ -11,6 +11,8 @@ namespace GitHubExplorer.Shared.Models
 {
     public class UserDto : IUser
     {
+        public static UserDto NullUser = new UserDto() { Login = "User not found", Name = "User not found" };
+
         public UserDto()
         {
             UserRepos = new List<UserRepoDto>();

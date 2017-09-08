@@ -91,9 +91,7 @@
   <ItemGroup>
     <Compile Include="Helpers\WebRequestHelperTests.cs" />
     <Compile Include="Mappers\JSonParserTests.cs" />
-    <Compile Include="Repositories\GitHubApiTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\MockedRepositoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

@@ -54,9 +54,9 @@ namespace GitHubExplorer
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "350071572105490",
+               appSecret: "cb03ba50d1e8f31c08335949738aaf3f");
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
