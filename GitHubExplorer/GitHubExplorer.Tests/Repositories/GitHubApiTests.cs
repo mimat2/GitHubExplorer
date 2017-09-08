@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GitHubExplorer.Tests.Repositories
 {
-    [TestClass]
+    //[TestClass]
     public class GitHubApiTests
     {
         [TestMethod]

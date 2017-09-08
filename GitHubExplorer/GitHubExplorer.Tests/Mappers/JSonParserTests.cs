@@ -26,7 +26,7 @@ namespace GitHubExplorer.Tests.Mappers
             Assert.IsNotNull(deserializedUser.Login);
             Assert.IsNotNull(deserializedUser.Name);
             Assert.IsNotNull(deserializedUser.Location);
-            Assert.IsNotNull(deserializedUser.Avatar_Url);
+            Assert.IsNotNull(deserializedUser.AvatarUrl);
         }
 
         [TestMethod]
@@ -43,9 +43,9 @@ namespace GitHubExplorer.Tests.Mappers
             var firstRepo = deserializedUserRepos.First();
             Assert.IsNotNull(firstRepo.Name);
             Assert.IsNotNull(firstRepo.Description);
-            Assert.IsNotNull(firstRepo.Stargazers_Count);
-            Assert.AreNotEqual(0, firstRepo.Stargazers_Count);
-            Assert.IsNotNull(firstRepo.Svn_Url);
+            Assert.IsNotNull(firstRepo.StargazersCount);
+            Assert.AreNotEqual(0, firstRepo.StargazersCount);
+            Assert.IsNotNull(firstRepo.SvnUrl);
         }
     }
 }

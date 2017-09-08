@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using GitHubExplorer.Shared.Interfaces;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,17 +9,25 @@ using System.Threading.Tasks;
 
 namespace GitHubExplorer.Shared.Models
 {
-    public class UserDto
+    public class UserDto : IUser
     {
         public UserDto()
         {
             UserRepos = new List<UserRepoDto>();
         }
 
+        [JsonProperty("login")]
         public string Login { get; set; }
+
+        [JsonProperty("name")]
         public string Name { get; set; }
+
+        [JsonProperty("location")]
         public string Location { get; set; }
-        public string Avatar_Url { get; set; }
-        public IEnumerable<UserRepoDto> UserRepos { get; set; }
+
+        [JsonProperty("avatar_url")]
+        public string AvatarUrl { get; set; }
+
+        public IEnumerable<IUserRepo> UserRepos { get; set; }
     }
 }

@@ -27,47 +27,60 @@ namespace GitHubExplorer.Repository
 
         private void CheckAvailability()
         {
-            var responseString = WebRequestHelper.CallGetRequest(ApiAddress);
-
-            if (responseString == null)
+            try
             {
-                throw new Exception("Api is unavailable");
-            }
-        }
+                var responseString = WebRequestHelper.CallGetRequest(ApiAddress);
 
-        public UserDto GetUserByLogin(string userLogin)
-        {
-            var userUrl = $"{ApiAddress}/users/{userLogin}";
-            var userResponseString = WebRequestHelper.CallGetRequest(userUrl);
-            if(userResponseString.Equals("NotFound"))
-            {
-                return new UserDto
+                if (responseString == null)
                 {
-                    Name = "User not found"
-                };
+                    throw new Exception("Api is unavailable");
+                }
             }
-            var foundUser = JsonConvert.DeserializeObject<UserDto>(userResponseString);
-            return foundUser;
+            catch (Exception ex)
+            {
+                //log exception
+                throw;
+            }
         }
 
-        public UserDto GetUserWithReposByLogin(string userLogin)
+        public IUser GetUserByLogin(string userLogin)
+        {
+            try
+            {
+                var userUrl = $"{ApiAddress}/users/{userLogin}";
+                var userResponseString = WebRequestHelper.CallGetRequest(userUrl);
+                if (userResponseString.Equals("NotFound"))
+                {
+                    return new NullUser();
+                }
+                var foundUser = JsonConvert.DeserializeObject<UserDto>(userResponseString);
+                return foundUser;
+            }
+            catch (Exception ex)
+            {
+                //log exception
+                throw;
+            }
+        }
+
+        public IUser GetUserWithReposByLogin(string userLogin)
         {
             var foundUser = GetUserByLogin(userLogin);
-            if (!string.IsNullOrWhiteSpace(foundUser.Login))
+            if (!(foundUser is NullUser))
             {
                 foundUser.UserRepos = GetUserRepos(foundUser.Login);
             }
             return foundUser;
         }
 
-        public IEnumerable<UserRepoDto> GetUserRepos(string userLogin, int bestReposCount = 5)
+        public IEnumerable<IUserRepo> GetUserRepos(string userLogin, int bestReposCount = 5)
         {
             try
             {
                 var userReposUrl = $"{ApiAddress}/users/{userLogin}/repos";
                 var userReposResponseString = WebRequestHelper.CallGetRequest(userReposUrl);
                 var userRepos = JsonConvert.DeserializeObject<List<UserRepoDto>>(userReposResponseString);
-                return userRepos.OrderByDescending(r => r.Stargazers_Count).Take(bestReposCount);
+                return userRepos.OrderByDescending(r => r.StargazersCount).Take(bestReposCount);
             }
             catch (Exception ex)
             {

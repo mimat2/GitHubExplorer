@@ -67,8 +67,8 @@
                         //$('#userLocation').html(outData.Location);
                         document.getElementById("userName").innerHTML = outData.Name;
                         document.getElementById("userLocation").innerHTML = outData.Location;
-                        if (outData.Avatar_Url !== null) {
-                            document.getElementById("userAvatar").innerHTML = "<img src='" + outData.Avatar_Url + "' height='100' width='100'></img>";
+                        if (outData.AvatarUrl !== null) {
+                            document.getElementById("userAvatar").innerHTML = "<img src='" + outData.AvatarUrl + "' height='100' width='100'></img>";
                         }
                         else {
                             document.getElementById("userAvatar").innerHTML = "<img hidden>";
@@ -85,8 +85,8 @@
                             table.row.add([
                                 outData.UserRepos[i].Name,
                                 outData.UserRepos[i].Description,
-                                outData.UserRepos[i].Stargazers_Count,
-                                "<a href='" + outData.UserRepos[i].Svn_Url + "' target='_blank'>" + outData.UserRepos[i].Svn_Url + "</a>"
+                                outData.UserRepos[i].StargazersCount,
+                                "<a href='" + outData.UserRepos[i].SvnUrl + "' target='_blank'>" + outData.UserRepos[i].SvnUrl + "</a>"
                             ]).draw(false);
                         }
                     },

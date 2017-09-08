@@ -17,10 +17,10 @@ namespace GitHubExplorer.Repository
                 Login = "User login",
                 Name = "User name",
                 Location = "User Location",
-                Avatar_Url = "https://i.vimeocdn.com/portrait/58832_300x300"
+                AvatarUrl = "https://i.vimeocdn.com/portrait/58832_300x300"
             };
 
-            mockedUserRepos = new List<UserRepoDto>();
+            mockedUserRepos = new List<IUserRepo>();
             Random rand = new Random();
             for (int i = 0; i < 10; i++)
             {
@@ -28,16 +28,16 @@ namespace GitHubExplorer.Repository
                 {
                     Description = "Repo description",
                     Name = "Repo name",
-                    Stargazers_Count = rand.Next(0, 100),
-                    Svn_Url = "http://www.google.com"
+                    StargazersCount = rand.Next(0, 100),
+                    SvnUrl = "http://www.google.com"
                 });
             }
         }
 
-        private UserDto mockedUser;
-        private List<UserRepoDto> mockedUserRepos;
+        private IUser mockedUser;
+        private List<IUserRepo> mockedUserRepos;
 
-        public UserDto GetUserByLogin(string userLogin)
+        public IUser GetUserByLogin(string userLogin)
         {
             mockedUser.Login = userLogin;
             mockedUser.Name = userLogin;
@@ -45,7 +45,7 @@ namespace GitHubExplorer.Repository
             return mockedUser;
         }
 
-        public UserDto GetUserWithReposByLogin(string userLogin)
+        public IUser GetUserWithReposByLogin(string userLogin)
         {
             mockedUser.Login = userLogin;
             mockedUser.Name = userLogin;
@@ -54,9 +54,9 @@ namespace GitHubExplorer.Repository
             return mockedUser;
         }
 
-        public IEnumerable<UserRepoDto> GetUserRepos(string userLogin, int bestReposCount = 5)
+        public IEnumerable<IUserRepo> GetUserRepos(string userLogin, int bestReposCount = 5)
         {
-            return mockedUserRepos.OrderByDescending(r => r.Stargazers_Count).Take(bestReposCount);
+            return mockedUserRepos.OrderByDescending(r => r.StargazersCount).Take(bestReposCount);
         }
     }
 }
